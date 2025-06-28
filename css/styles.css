@@ -1,0 +1,60 @@
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#route {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    z-index: 5;
+}
+
+#route ul {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+#route li {
+    font-family: "roboto", sans-serif;
+    font-size: 11px;
+    list-style: none;
+    background-image: url('../images/route_stop.png');
+    background-repeat: no-repeat;
+    padding: 0px 0px 20px 30px;
+    margin: 2px 0px 0px 0px;
+}
+
+.pastStopLabel {
+    font-family: "roboto", sans-serif;
+    font-size: 11px;
+    color: #aaaaaa;
+}
+
+.stopLabel {
+    font-family: "roboto", sans-serif;
+    font-size: 11px;
+    color: #000000;
+}
+
+.stopTime {
+    display: block;
+    clear: left;
+}
