@@ -284,69 +284,11 @@ function notSeenForSometime(bus) {
   return notSeenForSometime;
 }
 
-function isMegabus(bus) {
-  return (
-    bus[FLEET_NUMBER] == "50450" ||
-    bus[FLEET_NUMBER] == "50451" ||
-    bus[FLEET_NUMBER] == "50501" ||
-    bus[FLEET_NUMBER] == "50502" ||
-    bus[FLEET_NUMBER] == "50503" ||
-    bus[FLEET_NUMBER] == "50504" ||
-    bus[FLEET_NUMBER] == "50505" ||
-    bus[FLEET_NUMBER] == "50506" ||
-    bus[FLEET_NUMBER] == "50507" ||
-    bus[FLEET_NUMBER] == "50508" ||
-    bus[FLEET_NUMBER] == "50509" ||
-    bus[FLEET_NUMBER] == "50510" ||
-    bus[FLEET_NUMBER] == "50511" ||
-    bus[FLEET_NUMBER] == "50512" ||
-    bus[FLEET_NUMBER] == "50513" ||
-    bus[FLEET_NUMBER] == "50514" ||
-    bus[FLEET_NUMBER] == "50515" ||
-    bus[FLEET_NUMBER] == "50516" ||
-    bus[FLEET_NUMBER] == "50517" ||
-    bus[FLEET_NUMBER] == "50518" ||
-    bus[FLEET_NUMBER] == "50519" ||
-    bus[FLEET_NUMBER] == "50520" ||
-    bus[FLEET_NUMBER] == "50521" ||
-    bus[FLEET_NUMBER] == "50522" ||
-    bus[FLEET_NUMBER] == "50523" ||
-    bus[FLEET_NUMBER] == "50524" ||
-    bus[FLEET_NUMBER] == "50525" ||
-    bus[FLEET_NUMBER] == "50526" ||
-    bus[FLEET_NUMBER] == "50527" ||
-    bus[FLEET_NUMBER] == "50528" ||
-    bus[FLEET_NUMBER] == "50529" ||
-    bus[FLEET_NUMBER] == "50530" ||
-    bus[FLEET_NUMBER] == "54214" ||
-    bus[FLEET_NUMBER] == "54218" ||
-    bus[FLEET_NUMBER] == "54219" ||
-    bus[FLEET_NUMBER] == "54221" ||
-    bus[FLEET_NUMBER] == "54258" ||
-    bus[FLEET_NUMBER] == "54259" ||
-    bus[FLEET_NUMBER] == "54260" ||
-    bus[FLEET_NUMBER] == "54261" ||
-    bus[FLEET_NUMBER] == "54262" ||
-    bus[FLEET_NUMBER] == "54263" ||
-    bus[FLEET_NUMBER] == "54277" ||
-    bus[FLEET_NUMBER] == "54278" ||
-    bus[FLEET_NUMBER] == "54280" ||
-    bus[FLEET_NUMBER] == "54301" ||
-    bus[FLEET_NUMBER] == "54302" ||
-    bus[FLEET_NUMBER] == "54303" ||
-    bus[FLEET_NUMBER] == "54362" ||
-    bus[FLEET_NUMBER] == "54363" ||
-    bus[FLEET_NUMBER] == "54366" ||
-    bus[FLEET_NUMBER] == "54367" ||
-    bus[FLEET_NUMBER] == "54368"
-  );
-}
-
 // PHOTO REQUIREMENTS
 
 function isBRequirement(bus) {
   return (
-    // BLUEBIRD 08/03/25
+    // BLUEBIRD 30/10/25
 	bus[FLEET_NUMBER] == "10525" ||
 	bus[FLEET_NUMBER] == "11168" ||
 	bus[FLEET_NUMBER] == "11174" ||
@@ -428,7 +370,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "27803" ||
 	bus[FLEET_NUMBER] == "27807" ||
 	bus[FLEET_NUMBER] == "27808" ||
-	bus[FLEET_NUMBER] == "28644" ||
 	bus[FLEET_NUMBER] == "36046" ||
 	bus[FLEET_NUMBER] == "36066" ||
 	bus[FLEET_NUMBER] == "36956" ||
@@ -467,18 +408,13 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "50521" ||
 	bus[FLEET_NUMBER] == "50522" ||
 	bus[FLEET_NUMBER] == "50523" ||
-	bus[FLEET_NUMBER] == "53107" ||
-	bus[FLEET_NUMBER] == "53110" ||
-	bus[FLEET_NUMBER] == "53112" ||
 	bus[FLEET_NUMBER] == "53613" ||
 	bus[FLEET_NUMBER] == "53705" ||
 	bus[FLEET_NUMBER] == "53708" ||
 	bus[FLEET_NUMBER] == "53716" ||
 	bus[FLEET_NUMBER] == "54133" ||
-	bus[FLEET_NUMBER] == "54210" ||
 	bus[FLEET_NUMBER] == "54218" ||
 	bus[FLEET_NUMBER] == "54219" ||
-	bus[FLEET_NUMBER] == "54221" ||
 	bus[FLEET_NUMBER] == "54263" ||
 	bus[FLEET_NUMBER] == "54272" ||
 	bus[FLEET_NUMBER] == "54290" ||
@@ -536,176 +472,154 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "63125" ||
 	bus[FLEET_NUMBER] == "84057" ||
 	bus[FLEET_NUMBER] == "84058" ||
-	bus[FLEET_NUMBER] == "84065" ||
-	bus[FLEET_NUMBER] == "84066" ||
-    // EAST SCOTLAND 08/03/25
-    bus[FLEET_NUMBER] == "15462" ||
-    bus[FLEET_NUMBER] == "15465" ||
-    bus[FLEET_NUMBER] == "15643" ||
-    bus[FLEET_NUMBER] == "15733" ||
-    bus[FLEET_NUMBER] == "19038" ||
-    bus[FLEET_NUMBER] == "19394" ||
-    bus[FLEET_NUMBER] == "19631" ||
-    bus[FLEET_NUMBER] == "19635" ||
-    bus[FLEET_NUMBER] == "21434" ||
-    bus[FLEET_NUMBER] == "21437" ||
-    bus[FLEET_NUMBER] == "28602" ||
-    bus[FLEET_NUMBER] == "28645" ||
-    bus[FLEET_NUMBER] == "28650" ||
-    bus[FLEET_NUMBER] == "46019" ||
-    bus[FLEET_NUMBER] == "50511" ||
-    bus[FLEET_NUMBER] == "50515" ||
-    bus[FLEET_NUMBER] == "50516" ||
-    bus[FLEET_NUMBER] == "50517" ||
-    bus[FLEET_NUMBER] == "50536" ||
-    bus[FLEET_NUMBER] == "50537" ||
-    bus[FLEET_NUMBER] == "50543" ||
-	bus[FLEET_NUMBER] == "76121" ||
-	bus[FLEET_NUMBER] == "76122" ||
-	bus[FLEET_NUMBER] == "76123" ||
-	bus[FLEET_NUMBER] == "76124" ||
+    // EAST SCOTLAND 30/10/25
+	bus[FLEET_NUMBER] == "15462" ||
+	bus[FLEET_NUMBER] == "15465" ||
+	bus[FLEET_NUMBER] == "15643" ||
+	bus[FLEET_NUMBER] == "15733" ||
+	bus[FLEET_NUMBER] == "19394" ||
+	bus[FLEET_NUMBER] == "19631" ||
+	bus[FLEET_NUMBER] == "19635" ||
+	bus[FLEET_NUMBER] == "27215" ||
+	bus[FLEET_NUMBER] == "36298" ||
+	bus[FLEET_NUMBER] == "36346" ||
+	bus[FLEET_NUMBER] == "36347" ||
+	bus[FLEET_NUMBER] == "37553" ||
+	bus[FLEET_NUMBER] == "46019" ||
+	bus[FLEET_NUMBER] == "50511" ||
+	bus[FLEET_NUMBER] == "50515" ||
+	bus[FLEET_NUMBER] == "50516" ||
+	bus[FLEET_NUMBER] == "50517" ||
+	bus[FLEET_NUMBER] == "50536" ||
+	bus[FLEET_NUMBER] == "50537" ||
+	bus[FLEET_NUMBER] == "50543" ||
 	bus[FLEET_NUMBER] == "76125" ||
 	bus[FLEET_NUMBER] == "76126" ||
-    bus[FLEET_NUMBER] == "76127" ||
-    bus[FLEET_NUMBER] == "76128" ||
-    bus[FLEET_NUMBER] == "76129" ||
-    bus[FLEET_NUMBER] == "76130" ||
-    bus[FLEET_NUMBER] == "76131" ||
-    bus[FLEET_NUMBER] == "76132" ||
-    bus[FLEET_NUMBER] == "76133" ||
-    bus[FLEET_NUMBER] == "76134" ||
-    bus[FLEET_NUMBER] == "76135" ||
-    bus[FLEET_NUMBER] == "76136" ||
-    bus[FLEET_NUMBER] == "76137" ||
-    bus[FLEET_NUMBER] == "76138" ||
-    bus[FLEET_NUMBER] == "76139" ||
-    bus[FLEET_NUMBER] == "76140" ||
-    bus[FLEET_NUMBER] == "76141" ||
-    bus[FLEET_NUMBER] == "76142" ||
-    bus[FLEET_NUMBER] == "76143" ||
-    bus[FLEET_NUMBER] == "76144" ||
-    bus[FLEET_NUMBER] == "76145" ||
-    bus[FLEET_NUMBER] == "76146" ||
-    bus[FLEET_NUMBER] == "76147" ||
-    bus[FLEET_NUMBER] == "76148" ||
-    bus[FLEET_NUMBER] == "80211" ||
-    bus[FLEET_NUMBER] == "80212" ||
-    bus[FLEET_NUMBER] == "84071" ||
-    // WEST SCOTLAND 08/03/25
-    bus[FLEET_NUMBER] == "10521" ||
+	bus[FLEET_NUMBER] == "76127" ||
+	bus[FLEET_NUMBER] == "76128" ||
+	bus[FLEET_NUMBER] == "76129" ||
+	bus[FLEET_NUMBER] == "76130" ||
+	bus[FLEET_NUMBER] == "76131" ||
+	bus[FLEET_NUMBER] == "76132" ||
+	bus[FLEET_NUMBER] == "76133" ||
+	bus[FLEET_NUMBER] == "76134" ||
+	bus[FLEET_NUMBER] == "76135" ||
+	bus[FLEET_NUMBER] == "76136" ||
+	bus[FLEET_NUMBER] == "76137" ||
+	bus[FLEET_NUMBER] == "76138" ||
+	bus[FLEET_NUMBER] == "76139" ||
+	bus[FLEET_NUMBER] == "76140" ||
+	bus[FLEET_NUMBER] == "76141" ||
+	bus[FLEET_NUMBER] == "76142" ||
+	bus[FLEET_NUMBER] == "76143" ||
+	bus[FLEET_NUMBER] == "76144" ||
+	bus[FLEET_NUMBER] == "76145" ||
+	bus[FLEET_NUMBER] == "76146" ||
+	bus[FLEET_NUMBER] == "76147" ||
+	bus[FLEET_NUMBER] == "76148" ||
+	bus[FLEET_NUMBER] == "80211" ||
+	bus[FLEET_NUMBER] == "80212" ||
+	bus[FLEET_NUMBER] == "84071" ||
+    // WEST SCOTLAND 30/10/25
+	bus[FLEET_NUMBER] == "10521" ||
+	bus[FLEET_NUMBER] == "15024" ||
 	bus[FLEET_NUMBER] == "21433" ||
-    bus[FLEET_NUMBER] == "22388" ||
+	bus[FLEET_NUMBER] == "21434" ||
+	bus[FLEET_NUMBER] == "21437" ||
+	bus[FLEET_NUMBER] == "22388" ||
 	bus[FLEET_NUMBER] == "22789" ||
-    bus[FLEET_NUMBER] == "24189" ||
-    bus[FLEET_NUMBER] == "24191" ||
+	bus[FLEET_NUMBER] == "24189" ||
+	bus[FLEET_NUMBER] == "24191" ||
 	bus[FLEET_NUMBER] == "26209" ||
-    bus[FLEET_NUMBER] == "27580" ||
-    bus[FLEET_NUMBER] == "27721" ||
-    bus[FLEET_NUMBER] == "27814" ||
-    bus[FLEET_NUMBER] == "28704" ||
-    bus[FLEET_NUMBER] == "28706" ||
-    bus[FLEET_NUMBER] == "28707" ||
-    bus[FLEET_NUMBER] == "36140" ||
-    bus[FLEET_NUMBER] == "36141" ||
-    bus[FLEET_NUMBER] == "36143" ||
-    bus[FLEET_NUMBER] == "36145" ||
-    bus[FLEET_NUMBER] == "36147" ||
-    bus[FLEET_NUMBER] == "36152" ||
-    bus[FLEET_NUMBER] == "36332" ||
-    bus[FLEET_NUMBER] == "36704" ||
-    bus[FLEET_NUMBER] == "36739" ||
-    bus[FLEET_NUMBER] == "36740" ||
-    bus[FLEET_NUMBER] == "36745" ||
-    bus[FLEET_NUMBER] == "37247" ||
-    bus[FLEET_NUMBER] == "37248" ||
-    bus[FLEET_NUMBER] == "37486" ||
-    bus[FLEET_NUMBER] == "39001" ||
-    bus[FLEET_NUMBER] == "39002" ||
-    bus[FLEET_NUMBER] == "39003" ||
-    bus[FLEET_NUMBER] == "39004" ||
-    bus[FLEET_NUMBER] == "39005" ||
-    bus[FLEET_NUMBER] == "39006" ||
-    bus[FLEET_NUMBER] == "39007" ||
-    bus[FLEET_NUMBER] == "39008" ||
+	bus[FLEET_NUMBER] == "27580" ||
+	bus[FLEET_NUMBER] == "27721" ||
+	bus[FLEET_NUMBER] == "28704" ||
+	bus[FLEET_NUMBER] == "28706" ||
+	bus[FLEET_NUMBER] == "28707" ||
+	bus[FLEET_NUMBER] == "36739" ||
+	bus[FLEET_NUMBER] == "36740" ||
+	bus[FLEET_NUMBER] == "37486" ||
+	bus[FLEET_NUMBER] == "39001" ||
+	bus[FLEET_NUMBER] == "39002" ||
+	bus[FLEET_NUMBER] == "39003" ||
+	bus[FLEET_NUMBER] == "39004" ||
+	bus[FLEET_NUMBER] == "39005" ||
+	bus[FLEET_NUMBER] == "39006" ||
+	bus[FLEET_NUMBER] == "39007" ||
+	bus[FLEET_NUMBER] == "39008" ||
 	bus[FLEET_NUMBER] == "46000" ||
-    bus[FLEET_NUMBER] == "46001" ||
-    bus[FLEET_NUMBER] == "46010" ||
-    bus[FLEET_NUMBER] == "47002" ||
-    bus[FLEET_NUMBER] == "47388" ||
-    bus[FLEET_NUMBER] == "47460" ||
-    bus[FLEET_NUMBER] == "47651" ||
-    bus[FLEET_NUMBER] == "47822" ||
-    bus[FLEET_NUMBER] == "47835" ||
-    bus[FLEET_NUMBER] == "47837" ||
-    bus[FLEET_NUMBER] == "47839" ||
-    bus[FLEET_NUMBER] == "47840" ||
-    bus[FLEET_NUMBER] == "47841" ||
-    bus[FLEET_NUMBER] == "47843" ||
-    bus[FLEET_NUMBER] == "47844" ||
-    bus[FLEET_NUMBER] == "47846" ||
-    bus[FLEET_NUMBER] == "47914" ||
-    bus[FLEET_NUMBER] == "47934" ||
-    bus[FLEET_NUMBER] == "47935" ||
-    bus[FLEET_NUMBER] == "47936" ||
-    bus[FLEET_NUMBER] == "47937" ||
-    bus[FLEET_NUMBER] == "47939" ||
-    bus[FLEET_NUMBER] == "48021" ||
-    bus[FLEET_NUMBER] == "48044" ||
-    bus[FLEET_NUMBER] == "48045" ||
-    bus[FLEET_NUMBER] == "48127" ||
-    bus[FLEET_NUMBER] == "50406" ||
-    bus[FLEET_NUMBER] == "50501" ||
-    bus[FLEET_NUMBER] == "50502" ||
-    bus[FLEET_NUMBER] == "50504" ||
-    bus[FLEET_NUMBER] == "50508" ||
-    bus[FLEET_NUMBER] == "50509" ||
-    bus[FLEET_NUMBER] == "50510" ||
-    bus[FLEET_NUMBER] == "50525" ||
-    bus[FLEET_NUMBER] == "50527" ||
-    bus[FLEET_NUMBER] == "50528" ||
-    bus[FLEET_NUMBER] == "53709" ||
-    bus[FLEET_NUMBER] == "53711" ||
-    bus[FLEET_NUMBER] == "53712" ||
-    bus[FLEET_NUMBER] == "53723" ||
-    bus[FLEET_NUMBER] == "54212" ||
-    bus[FLEET_NUMBER] == "54215" ||
-    bus[FLEET_NUMBER] == "54265" ||
-    bus[FLEET_NUMBER] == "54271" ||
-    bus[FLEET_NUMBER] == "64005" ||
-    bus[FLEET_NUMBER] == "64033" ||
-    bus[FLEET_NUMBER] == "64034" ||
-    bus[FLEET_NUMBER] == "66001" ||
-    bus[FLEET_NUMBER] == "66014" ||
-    bus[FLEET_NUMBER] == "66022" ||
-    bus[FLEET_NUMBER] == "66024" ||
-    bus[FLEET_NUMBER] == "80185" ||
-    bus[FLEET_NUMBER] == "80186" ||
-    bus[FLEET_NUMBER] == "80187" ||
-    bus[FLEET_NUMBER] == "80188" ||
-    bus[FLEET_NUMBER] == "80189" ||
-    bus[FLEET_NUMBER] == "80190" ||
-    bus[FLEET_NUMBER] == "80191" ||
-    bus[FLEET_NUMBER] == "80192" ||
-    bus[FLEET_NUMBER] == "80193" ||
-    bus[FLEET_NUMBER] == "80194" ||
-    bus[FLEET_NUMBER] == "80195" ||
-    bus[FLEET_NUMBER] == "80196" ||
-    bus[FLEET_NUMBER] == "80197" ||
-    bus[FLEET_NUMBER] == "80198" ||
-    bus[FLEET_NUMBER] == "80199" ||
-    bus[FLEET_NUMBER] == "80200" ||
-    bus[FLEET_NUMBER] == "80201" ||
-    bus[FLEET_NUMBER] == "80202" ||
-    bus[FLEET_NUMBER] == "80203" ||
-    bus[FLEET_NUMBER] == "80204" ||
-    bus[FLEET_NUMBER] == "80205" ||
-    bus[FLEET_NUMBER] == "80206" ||
-    bus[FLEET_NUMBER] == "80207" ||
-    bus[FLEET_NUMBER] == "80208" ||
-    bus[FLEET_NUMBER] == "80209" ||
-    bus[FLEET_NUMBER] == "80210" ||
-    // NORTH EAST 08/03/25
-    bus[FLEET_NUMBER] == "10484" ||
+	bus[FLEET_NUMBER] == "46001" ||
+	bus[FLEET_NUMBER] == "46010" ||
+	bus[FLEET_NUMBER] == "47002" ||
+	bus[FLEET_NUMBER] == "47388" ||
+	bus[FLEET_NUMBER] == "47651" ||
+	bus[FLEET_NUMBER] == "47835" ||
+	bus[FLEET_NUMBER] == "47837" ||
+	bus[FLEET_NUMBER] == "47843" ||
+	bus[FLEET_NUMBER] == "47934" ||
+	bus[FLEET_NUMBER] == "47935" ||
+	bus[FLEET_NUMBER] == "47936" ||
+	bus[FLEET_NUMBER] == "47937" ||
+	bus[FLEET_NUMBER] == "48021" ||
+	bus[FLEET_NUMBER] == "48127" ||
+	bus[FLEET_NUMBER] == "50406" ||
+	bus[FLEET_NUMBER] == "50501" ||
+	bus[FLEET_NUMBER] == "50502" ||
+	bus[FLEET_NUMBER] == "50504" ||
+	bus[FLEET_NUMBER] == "50508" ||
+	bus[FLEET_NUMBER] == "50509" ||
+	bus[FLEET_NUMBER] == "50510" ||
+	bus[FLEET_NUMBER] == "50525" ||
+	bus[FLEET_NUMBER] == "50527" ||
+	bus[FLEET_NUMBER] == "50528" ||
+	bus[FLEET_NUMBER] == "53711" ||
+	bus[FLEET_NUMBER] == "53723" ||
+	bus[FLEET_NUMBER] == "54212" ||
+	bus[FLEET_NUMBER] == "54215" ||
+	bus[FLEET_NUMBER] == "54265" ||
+	bus[FLEET_NUMBER] == "54270" ||
+	bus[FLEET_NUMBER] == "54271" ||
+	bus[FLEET_NUMBER] == "64005" ||
+	bus[FLEET_NUMBER] == "64033" ||
+	bus[FLEET_NUMBER] == "64034" ||
+	bus[FLEET_NUMBER] == "66001" ||
+	bus[FLEET_NUMBER] == "66014" ||
+	bus[FLEET_NUMBER] == "66022" ||
+	bus[FLEET_NUMBER] == "66024" ||
+	bus[FLEET_NUMBER] == "73191" ||
+	bus[FLEET_NUMBER] == "73192" ||
+	bus[FLEET_NUMBER] == "73193" ||
+	bus[FLEET_NUMBER] == "73194" ||
+	bus[FLEET_NUMBER] == "80185" ||
+	bus[FLEET_NUMBER] == "80186" ||
+	bus[FLEET_NUMBER] == "80187" ||
+	bus[FLEET_NUMBER] == "80188" ||
+	bus[FLEET_NUMBER] == "80189" ||
+	bus[FLEET_NUMBER] == "80190" ||
+	bus[FLEET_NUMBER] == "80191" ||
+	bus[FLEET_NUMBER] == "80192" ||
+	bus[FLEET_NUMBER] == "80193" ||
+	bus[FLEET_NUMBER] == "80194" ||
+	bus[FLEET_NUMBER] == "80195" ||
+	bus[FLEET_NUMBER] == "80196" ||
+	bus[FLEET_NUMBER] == "80197" ||
+	bus[FLEET_NUMBER] == "80198" ||
+	bus[FLEET_NUMBER] == "80199" ||
+	bus[FLEET_NUMBER] == "80200" ||
+	bus[FLEET_NUMBER] == "80201" ||
+	bus[FLEET_NUMBER] == "80202" ||
+	bus[FLEET_NUMBER] == "80203" ||
+	bus[FLEET_NUMBER] == "80204" ||
+	bus[FLEET_NUMBER] == "80205" ||
+	bus[FLEET_NUMBER] == "80206" ||
+	bus[FLEET_NUMBER] == "80207" ||
+	bus[FLEET_NUMBER] == "80208" ||
+	bus[FLEET_NUMBER] == "80209" ||
+	bus[FLEET_NUMBER] == "80210" ||
+	bus[FLEET_NUMBER] == "84065" ||
+	bus[FLEET_NUMBER] == "84066" ||
+    // NORTH EAST 30/10/25
+	bus[FLEET_NUMBER] == "10484" ||
 	bus[FLEET_NUMBER] == "10579" ||
 	bus[FLEET_NUMBER] == "10580" ||
 	bus[FLEET_NUMBER] == "10644" ||
@@ -757,10 +671,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "11778" ||
 	bus[FLEET_NUMBER] == "11779" ||
 	bus[FLEET_NUMBER] == "11780" ||
-	bus[FLEET_NUMBER] == "17239" ||
-	bus[FLEET_NUMBER] == "17240" ||
-	bus[FLEET_NUMBER] == "17643" ||
-	bus[FLEET_NUMBER] == "17645" ||
 	bus[FLEET_NUMBER] == "19440" ||
 	bus[FLEET_NUMBER] == "22071" ||
 	bus[FLEET_NUMBER] == "22072" ||
@@ -769,7 +679,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "24110" ||
 	bus[FLEET_NUMBER] == "24111" ||
 	bus[FLEET_NUMBER] == "24116" ||
-	bus[FLEET_NUMBER] == "24117" ||
 	bus[FLEET_NUMBER] == "24119" ||
 	bus[FLEET_NUMBER] == "24120" ||
 	bus[FLEET_NUMBER] == "24121" ||
@@ -790,17 +699,10 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "26288" ||
 	bus[FLEET_NUMBER] == "26290" ||
 	bus[FLEET_NUMBER] == "26291" ||
-	bus[FLEET_NUMBER] == "27168" ||
-	bus[FLEET_NUMBER] == "27175" ||
 	bus[FLEET_NUMBER] == "27180" ||
 	bus[FLEET_NUMBER] == "27247" ||
 	bus[FLEET_NUMBER] == "27248" ||
 	bus[FLEET_NUMBER] == "27509" ||
-	bus[FLEET_NUMBER] == "27631" ||
-	bus[FLEET_NUMBER] == "27632" ||
-	bus[FLEET_NUMBER] == "27688" ||
-	bus[FLEET_NUMBER] == "27698" ||
-	bus[FLEET_NUMBER] == "27699" ||
 	bus[FLEET_NUMBER] == "27717" ||
 	bus[FLEET_NUMBER] == "27718" ||
 	bus[FLEET_NUMBER] == "27728" ||
@@ -812,7 +714,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "27740" ||
 	bus[FLEET_NUMBER] == "27770" ||
 	bus[FLEET_NUMBER] == "27771" ||
-	bus[FLEET_NUMBER] == "27812" ||
 	bus[FLEET_NUMBER] == "27817" ||
 	bus[FLEET_NUMBER] == "27818" ||
 	bus[FLEET_NUMBER] == "27819" ||
@@ -820,8 +721,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "27821" ||
 	bus[FLEET_NUMBER] == "27822" ||
 	bus[FLEET_NUMBER] == "27823" ||
-	bus[FLEET_NUMBER] == "27913" ||
-	bus[FLEET_NUMBER] == "27914" ||
 	bus[FLEET_NUMBER] == "28004" ||
 	bus[FLEET_NUMBER] == "28006" ||
 	bus[FLEET_NUMBER] == "28007" ||
@@ -833,13 +732,10 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "28015" ||
 	bus[FLEET_NUMBER] == "28019" ||
 	bus[FLEET_NUMBER] == "34605" ||
-	bus[FLEET_NUMBER] == "34611" ||
 	bus[FLEET_NUMBER] == "34833" ||
 	bus[FLEET_NUMBER] == "35222" ||
-	bus[FLEET_NUMBER] == "35224" ||
 	bus[FLEET_NUMBER] == "35234" ||
 	bus[FLEET_NUMBER] == "35236" ||
-	bus[FLEET_NUMBER] == "35261" ||
 	bus[FLEET_NUMBER] == "36050" ||
 	bus[FLEET_NUMBER] == "36081" ||
 	bus[FLEET_NUMBER] == "36082" ||
@@ -906,7 +802,6 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "44035" ||
 	bus[FLEET_NUMBER] == "44053" ||
 	bus[FLEET_NUMBER] == "54269" ||
-	bus[FLEET_NUMBER] == "54270" ||
 	bus[FLEET_NUMBER] == "73057" ||
 	bus[FLEET_NUMBER] == "73058" ||
 	bus[FLEET_NUMBER] == "73059" ||
@@ -984,7 +879,26 @@ function isBRequirement(bus) {
 	bus[FLEET_NUMBER] == "73168" ||
 	bus[FLEET_NUMBER] == "73169" ||
 	bus[FLEET_NUMBER] == "73170" ||
-	bus[FLEET_NUMBER] == "73171"
+	bus[FLEET_NUMBER] == "73171" ||
+	bus[FLEET_NUMBER] == "73172" ||
+	bus[FLEET_NUMBER] == "73173" ||
+	bus[FLEET_NUMBER] == "73174" ||
+	bus[FLEET_NUMBER] == "73175" ||
+	bus[FLEET_NUMBER] == "73176" ||
+	bus[FLEET_NUMBER] == "73177" ||
+	bus[FLEET_NUMBER] == "73178" ||
+	bus[FLEET_NUMBER] == "73179" ||
+	bus[FLEET_NUMBER] == "73180" ||
+	bus[FLEET_NUMBER] == "73181" ||
+	bus[FLEET_NUMBER] == "73182" ||
+	bus[FLEET_NUMBER] == "73183" ||
+	bus[FLEET_NUMBER] == "73184" ||
+	bus[FLEET_NUMBER] == "73185" ||
+	bus[FLEET_NUMBER] == "73186" ||
+	bus[FLEET_NUMBER] == "73187" ||
+	bus[FLEET_NUMBER] == "73188" ||
+	bus[FLEET_NUMBER] == "73189" ||
+	bus[FLEET_NUMBER] == "73190"
   );
 }
 
@@ -998,7 +912,6 @@ function isRRequirement(bus) {
     bus[FLEET_NUMBER] == "36203" ||
     bus[FLEET_NUMBER] == "36204" ||
     bus[FLEET_NUMBER] == "50413" ||
-    bus[FLEET_NUMBER] == "53617" ||
     bus[FLEET_NUMBER] == "53702" ||
     bus[FLEET_NUMBER] == "53703" ||
     bus[FLEET_NUMBER] == "53706" ||
@@ -1008,18 +921,16 @@ function isRRequirement(bus) {
     bus[FLEET_NUMBER] == "54135" ||
     bus[FLEET_NUMBER] == "54136" ||
     bus[FLEET_NUMBER] == "54137" ||
-    bus[FLEET_NUMBER] == "54246" ||
     bus[FLEET_NUMBER] == "54304" ||
     bus[FLEET_NUMBER] == "54309" ||
     bus[FLEET_NUMBER] == "84060" ||
-    bus[FLEET_NUMBER] == "84064" ||
     // EAST SCOTLAND 08/03/25
     bus[FLEET_NUMBER] == "11534" ||
 	bus[FLEET_NUMBER] == "11536" ||
     bus[FLEET_NUMBER] == "11540" ||
     bus[FLEET_NUMBER] == "19370" ||
-    bus[FLEET_NUMBER] == "28603" ||
-    bus[FLEET_NUMBER] == "28649" ||
+    bus[FLEET_NUMBER] == "27212" ||
+    bus[FLEET_NUMBER] == "36373" ||
 	bus[FLEET_NUMBER] == "46020" ||
     bus[FLEET_NUMBER] == "48152" ||
     bus[FLEET_NUMBER] == "50513" ||
@@ -1027,22 +938,23 @@ function isRRequirement(bus) {
     bus[FLEET_NUMBER] == "54277" ||
     bus[FLEET_NUMBER] == "54278" ||
     bus[FLEET_NUMBER] == "54280" ||
+	bus[FLEET_NUMBER] == "76121" ||
+	bus[FLEET_NUMBER] == "76122" ||
 	bus[FLEET_NUMBER] == "80213" ||
     bus[FLEET_NUMBER] == "80220" ||
 	bus[FLEET_NUMBER] == "80226" ||
     // WEST SCOTLAND 08/03/25
     bus[FLEET_NUMBER] == "10512" ||
-    bus[FLEET_NUMBER] == "22169" ||
     bus[FLEET_NUMBER] == "28660" ||
     bus[FLEET_NUMBER] == "28663" ||
     bus[FLEET_NUMBER] == "28666" ||
     bus[FLEET_NUMBER] == "28702" ||
-    bus[FLEET_NUMBER] == "36705" ||
     bus[FLEET_NUMBER] == "37252" ||
     bus[FLEET_NUMBER] == "37494" ||
     bus[FLEET_NUMBER] == "47838" ||
     bus[FLEET_NUMBER] == "50410" ||
     bus[FLEET_NUMBER] == "64012" ||
+	bus[FLEET_NUMBER] == "84064" ||
     // NORTH EAST 08/03/25
     bus[FLEET_NUMBER] == "19437" ||
     bus[FLEET_NUMBER] == "19444" ||
@@ -1056,14 +968,8 @@ function isRRequirement(bus) {
     bus[FLEET_NUMBER] == "22890" ||
     bus[FLEET_NUMBER] == "26063" ||
     bus[FLEET_NUMBER] == "26064" ||
-    bus[FLEET_NUMBER] == "27164" ||
-    bus[FLEET_NUMBER] == "27179" ||
-    bus[FLEET_NUMBER] == "27242" ||
-    bus[FLEET_NUMBER] == "27244" ||
     bus[FLEET_NUMBER] == "27716" ||
     bus[FLEET_NUMBER] == "27796" ||
-    bus[FLEET_NUMBER] == "27805" ||
-    bus[FLEET_NUMBER] == "27809" ||
     bus[FLEET_NUMBER] == "27883" ||
     bus[FLEET_NUMBER] == "28001" ||
     bus[FLEET_NUMBER] == "39720" ||
@@ -1078,8 +984,6 @@ function isKRequirement(bus) {
     bus[FLEET_NUMBER] == "50541" ||
     // WEST SCOTLAND
 	bus[FLEET_NUMBER] == "22879" ||
-    bus[FLEET_NUMBER] == "47845" ||
-    bus[FLEET_NUMBER] == "50253" ||
     // NORTH EAST
     bus[FLEET_NUMBER] == "26278" ||
     bus[FLEET_NUMBER] == "26292" ||
@@ -1134,11 +1038,6 @@ function getIcon(bus) {
   if (isUnknown(bus)) {
     icon =
       "https://cdn.glitch.global/dc77986a-ecf1-4edf-b412-157ef949d5bf/unknown1.png?v=1656526895623";
-  }
-
-  if (isMegabus(bus)) {
-    icon =
-      "https://cdn.glitch.com/dc77986a-ecf1-4edf-b412-157ef949d5bf%2Fmegabus.png?v=1632352758341";
   }
 
   return icon;
@@ -1200,8 +1099,6 @@ function createBusInfo(bus) {
     label: {
       color: isNotinService(bus)
         ? "#FF0000"
-        : isMegabus(bus)
-        ? "#FFFF00"
         : "#000000",
       fontWeight: "bold",
       fontSize: "11px",
