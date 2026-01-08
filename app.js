@@ -52,7 +52,7 @@ function getUkBusUrl(env) {
 function getScgUrl(env) {
   if (env === QA) return "https://api.stagecoach-technology-qa.net";
   // stage/dev/prod all point to stage host in your original code
-  return "https://api.stagecoach-technology.net";
+  return "https://api.stagecoach-technology-stage.net";
 }
 
 function getApiKey(env) {
