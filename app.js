@@ -27,6 +27,54 @@ const UKBUS_API_PREFIX = getUkBusUrl(ENVIRONMENT);
 const SCG_API_PREFIX = getScgUrl(ENVIRONMENT);
 const API_KEY = getApiKey(ENVIRONMENT);
 
+const FEEDS = [
+  { name: "prod", prefix: "https://api.stagecoach-technology.net" },
+  { name: "dev",  prefix: "https://api.stagecoach-technology-dev.net" },
+  { name: "qa",   prefix: "https://api.stagecoach-technology-qa.net" },
+  { name: "stage",prefix: "https://api.stagecoach-technology-stage.net" },
+];
+
+// Higher number = higher priority (only used if update times tie)
+const FEED_PRIORITY = {
+  prod: 4,
+  stage: 3,
+  qa: 2,
+  dev: 1,
+};
+
+function getUpdateMs(bus) {
+  // Your ut appears to be ms already, but you divide by 1000 elsewhere.
+  // We'll treat it as a number and compare numerically.
+  const n = Number(bus?.[UPDATE_TIME]);
+  return Number.isFinite(n) ? n : -Infinity;
+}
+
+function getFeedPriority(bus) {
+  const name = String(bus?.__feed || "").trim();
+  return FEED_PRIORITY[name] ?? 0;
+}
+
+function isBetterBus(candidate, current) {
+  if (!current) return true;
+
+  const cu = getUpdateMs(candidate);
+  const uu = getUpdateMs(current);
+
+  if (cu !== uu) return cu > uu; // newest wins
+
+  // tie-breaker: feed priority
+  const cp = getFeedPriority(candidate);
+  const up = getFeedPriority(current);
+  if (cp !== up) return cp > up;
+
+  // final tie-breaker: keep current (stable)
+  return false;
+}
+
+
+// Choose priority order by ordering FEEDS.
+// First feed in the list “wins” if duplicates exist.
+
 // If you DON'T want the API key client-side, remove it from here and proxy it server-side instead.
 function getEnvironment() {
   if (
@@ -206,17 +254,17 @@ function buildPopupHtml(bus) {
   const fleet = bus[FLEET_NUMBER] != null ? String(bus[FLEET_NUMBER]) : "";
   const heading = bus[HEADING] != null ? String(bus[HEADING]) : "";
 
+  const feed = (bus.__feed || "").trim(); // <-- added
+
   const updatedTime = new Date(0);
   updatedTime.setUTCSeconds(Number(bus[UPDATE_TIME]) / 1000);
   const now = new Date();
   const secs = Math.max(0, Math.floor((now - updatedTime) / 1000));
 
   const timeAgo =
-    secs < 60
-      ? `${secs} secs ago`
-      : secs < 120
-      ? `1 min ago`
-      : `${Math.floor(secs / 60)} mins ago`;
+    secs < 60 ? `${secs} secs ago` :
+    secs < 120 ? `1 min ago` :
+    `${Math.floor(secs / 60)} mins ago`;
 
   const line1 =
     service && destination
@@ -229,9 +277,11 @@ function buildPopupHtml(bus) {
     ${line1}<br>
     <b>${fleet}</b> - ${opco}<br>
     <b>Last seen</b> ${timeAgo}<br>
-    <b>Heading</b> ${heading}°
+    <b>Heading</b> ${heading}°<br>
+    <small style="opacity:0.75">Feed: ${feed || "unknown"}</small>
   `;
 }
+
 
 function createBusDivIcon(bus) {
   const container = document.createElement("div");
@@ -282,22 +332,35 @@ function andParam(name, value) {
   return `&${name}=${encodeURIComponent(value)}`;
 }
 
-function buildVehicleQueryString(bounds) {
-  const baseUrl = `${SCG_API_PREFIX}/vehicle-tracking/v1/vehicles`;
+function buildVehicleQueryString(apiPrefix, bounds) {
+  const baseUrl = `${apiPrefix}/vehicle-tracking/v1/vehicles`;
   const ne = bounds.getNorthEast();
   const sw = bounds.getSouthWest();
 
-  // Leaflet bounds use lat/lng fields directly
-  let url =
+  return (
     baseUrl +
     withQuery("latsw", sw.lat) +
     andParam("lngsw", sw.lng) +
     andParam("latne", ne.lat) +
     andParam("lngne", ne.lng) +
-    andParam("clip", "true");
+    andParam("clip", "true")
+  );
+}
 
-  // If you later re-add filters (opco/service), you can extend here.
-  return url;
+async function fetchFeedVehicles(feed, bounds) {
+  const url = buildVehicleQueryString(feed.prefix, bounds);
+  const proxiedUrl = `https://global.ross4122-ff0.workers.dev/?url=${encodeURIComponent(url)}`;
+
+  const res = await fetch(proxiedUrl);
+  if (!res.ok) throw new Error(`[${feed.name}] Fetch failed: ${res.status} ${res.statusText}`);
+
+  const data = await res.json();
+  const services = Array.isArray(data?.services) ? data.services : [];
+
+  // tag each bus with the feed name so popup + marker can display it
+  for (const bus of services) bus.__feed = feed.name;
+
+  return services;
 }
 
 async function fetchVehicles() {
@@ -305,54 +368,49 @@ async function fetchVehicles() {
     const showRequirementsOnly =
       document.getElementById("requirementsCheckbox")?.checked ?? false;
 
-    const url = buildVehicleQueryString(map.getBounds());
-
-    const proxiedUrl =
-	`https://global.ross4122-ff0.workers.dev/?url=${encodeURIComponent(url)}`;
-
-	const res = await fetch(proxiedUrl);
-
-    if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
-
-    const data = await res.json();
-    const services = Array.isArray(data?.services) ? data.services : [];
-
     popupWasOpen = !!map._popup;
 
-    // Remove markers that are no longer present
-    const seenKeys = new Set();
-    for (const bus of services) {
-      const key = String(bus[FLEET_NUMBER] ?? "");
-      if (!key) continue;
-      seenKeys.add(key);
+    const bounds = map.getBounds();
+
+    // 1) Pull all feeds (sequential, so FEEDS order = priority)
+    const mergedByFleet = new Map(); // fleetKey -> best bus (newest ut wins)
+
+for (const feed of FEEDS) {
+  let services = [];
+  try {
+    services = await fetchFeedVehicles(feed, bounds);
+  } catch (e) {
+    console.warn(String(e));
+    continue;
+  }
+
+  for (const bus of services) {
+    const fleetKey = String(bus[FLEET_NUMBER] ?? "").trim();
+    if (!fleetKey) continue;
+
+    const existing = mergedByFleet.get(fleetKey);
+    if (isBetterBus(bus, existing)) {
+      mergedByFleet.set(fleetKey, bus);
     }
-    for (const [key, marker] of busMarkers.entries()) {
-      if (!seenKeys.has(key)) {
-        marker.remove();
-        busMarkers.delete(key);
-      }
-    }
+  }
+}
 
-    // Add/update markers
-    for (const bus of services) {
-      const lat = Number(bus[LATITUDE]);
-      const lon = Number(bus[LONGITUDE]);
-      if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
-
-      const fleetKey = String(bus[FLEET_NUMBER] ?? "");
-      if (!fleetKey) continue;
-
-      // Optional: ignore stale fixes similar to your Leaflet SIRI version
-      // (your SC script used a huge threshold, so we won't filter aggressively by default)
-      // If you want: if (formatLastSeen(bus).diffMs > 15 * 60 * 1000) continue;
-
-      // Apply requirement-only filter (same behaviour as your Leaflet version)
+    // 2) Create the set of keys that should exist after merge (respecting requirements filter)
+    const targetKeys = new Set();
+    for (const [fleetKey, bus] of mergedByFleet.entries()) {
+      // Apply requirement-only filter
       if (
         showRequirementsOnly &&
         !(isRRequirement(bus) || isKRequirement(bus) || isBRequirement(bus))
       ) {
         continue;
       }
+
+      const lat = Number(bus[LATITUDE]);
+      const lon = Number(bus[LONGITUDE]);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+
+      targetKeys.add(fleetKey);
 
       const icon = createBusDivIcon(bus);
       const popupHtml = buildPopupHtml(bus);
@@ -362,9 +420,7 @@ async function fetchVehicles() {
         marker.setLatLng([lat, lon]);
         marker.setIcon(icon);
         marker.setPopupContent(popupHtml);
-
-        // store bus so icon/popup refresh uses latest values if needed
-        marker.options.bus = bus;
+        marker.options.bus = bus; // keep latest bus + feed tag
       } else {
         const marker = L.marker([lat, lon], { icon, bus }).addTo(map);
         marker.bindPopup(popupHtml);
@@ -382,18 +438,15 @@ async function fetchVehicles() {
       }
     }
 
-    // If filter ON: remove anything that doesn't match
-    if (showRequirementsOnly) {
-      for (const [key, marker] of busMarkers.entries()) {
-        const bus = marker.options.bus;
-        if (!(isRRequirement(bus) || isKRequirement(bus) || isBRequirement(bus))) {
-          marker.remove();
-          busMarkers.delete(key);
-        }
+    // 3) Remove markers not in target set
+    for (const [key, marker] of busMarkers.entries()) {
+      if (!targetKeys.has(key)) {
+        marker.remove();
+        busMarkers.delete(key);
       }
     }
 
-    // Re-open popup after refresh
+    // 4) Re-open popup after refresh
     if (popupWasOpen && lastOpenedKey && busMarkers.has(lastOpenedKey)) {
       busMarkers.get(lastOpenedKey).openPopup();
     }
