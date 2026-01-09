@@ -29,8 +29,8 @@ const API_KEY = getApiKey(ENVIRONMENT);
 
 const FEEDS = [
   { name: "prod", prefix: "https://api.stagecoach-technology.net" },
-  { name: "dev",  prefix: "https://api.stagecoach-technology-dev.net" },
-  { name: "qa",   prefix: "https://api.stagecoach-technology-qa.net" },
+//  { name: "dev",  prefix: "https://api.stagecoach-technology-dev.net" },
+//  { name: "qa",   prefix: "https://api.stagecoach-technology-qa.net" },
   { name: "stage",prefix: "https://api.stagecoach-technology-stage.net" },
 ];
 
@@ -38,8 +38,8 @@ const FEEDS = [
 const FEED_PRIORITY = {
   prod: 4,
   stage: 3,
-  qa: 2,
-  dev: 1,
+//  qa: 2,
+//  dev: 1,
 };
 
 function getUpdateMs(bus) {
@@ -309,7 +309,7 @@ function createBusDivIcon(bus) {
 
   container.appendChild(label);
 
-  const W = 70;
+  const W = 52;
   const H = 16;
 
   return L.divIcon({
