@@ -3,8 +3,11 @@ const kReqFleetNumbers = new Set([
 	"63122",
     // EAST SCOTLAND
     "50541",
+	"76128",
+	"76130",
+	"76137",
     // WEST SCOTLAND
-	"22879",
+	"50404",
 	"54275",
     // NORTH EAST
     "26278",
