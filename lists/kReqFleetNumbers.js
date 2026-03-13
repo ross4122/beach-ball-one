@@ -1,6 +1,5 @@
 const kReqFleetNumbers = new Set([
     // BLUEBIRD
-	"",
     // EAST SCOTLAND
     "50541",
 	"76128",

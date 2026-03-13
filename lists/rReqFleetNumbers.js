@@ -16,7 +16,6 @@ const rReqFleetNumbers = new Set([
     "54136",
     "54137",
     "54309",
-    "",
     // EAST SCOTLAND JAN 26
     "11534",
 	"11536",
@@ -54,7 +53,6 @@ const rReqFleetNumbers = new Set([
     "19643",
     "19644",
     "22883",
-    "22890",
     "26063",
     "26064",
     "27179",
@@ -63,6 +61,5 @@ const rReqFleetNumbers = new Set([
 	"27716",
 	"27796",
     "27883",
-    "28001",
-    "39730"
+    "28001"
 ]);
