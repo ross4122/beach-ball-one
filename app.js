@@ -27,6 +27,8 @@ const UKBUS_API_PREFIX = getUkBusUrl(ENVIRONMENT);
 const SCG_API_PREFIX = getScgUrl(ENVIRONMENT);
 const API_KEY = getApiKey(ENVIRONMENT);
 
+const MAX_AGE_MS = 15 * 60 * 1000; // 15 minutes
+
 const FEEDS = [
   { name: "prod", prefix: "https://api.stagecoach-technology.net" },
 //  { name: "dev",  prefix: "https://api.stagecoach-technology-dev.net" },
@@ -71,6 +73,10 @@ function isBetterBus(candidate, current) {
   return false;
 }
 
+function isFreshEnough(bus) {
+  const updatedMs = getUpdateMs(bus);
+  return Number.isFinite(updatedMs) && Date.now() - updatedMs <= MAX_AGE_MS;
+}
 
 // Choose priority order by ordering FEEDS.
 // First feed in the list “wins” if duplicates exist.
@@ -372,32 +378,38 @@ async function fetchVehicles() {
 
     const bounds = map.getBounds();
 
-    // 1) Pull all feeds (sequential, so FEEDS order = priority)
-    const mergedByFleet = new Map(); // fleetKey -> best bus (newest ut wins)
+    // 1) Pull all feeds
+    const mergedByFleet = new Map(); // fleetKey -> best bus
 
-for (const feed of FEEDS) {
-  let services = [];
-  try {
-    services = await fetchFeedVehicles(feed, bounds);
-  } catch (e) {
-    console.warn(String(e));
-    continue;
-  }
+    for (const feed of FEEDS) {
+      let services = [];
+      try {
+        services = await fetchFeedVehicles(feed, bounds);
+      } catch (e) {
+        console.warn(String(e));
+        continue;
+      }
 
-  for (const bus of services) {
-    const fleetKey = String(bus[FLEET_NUMBER] ?? "").trim();
-    if (!fleetKey) continue;
+      for (const bus of services) {
+        const fleetKey = String(bus[FLEET_NUMBER] ?? "").trim();
+        if (!fleetKey) continue;
 
-    const existing = mergedByFleet.get(fleetKey);
-    if (isBetterBus(bus, existing)) {
-      mergedByFleet.set(fleetKey, bus);
+        const existing = mergedByFleet.get(fleetKey);
+        if (isBetterBus(bus, existing)) {
+          mergedByFleet.set(fleetKey, bus);
+        }
+      }
     }
-  }
-}
 
-    // 2) Create the set of keys that should exist after merge (respecting requirements filter)
+    // 2) Create the set of keys that should exist after merge
     const targetKeys = new Set();
+
     for (const [fleetKey, bus] of mergedByFleet.entries()) {
+      // Hide buses older than 15 minutes
+      if (!isFreshEnough(bus)) {
+        continue;
+      }
+
       // Apply requirement-only filter
       if (
         showRequirementsOnly &&
@@ -420,7 +432,7 @@ for (const feed of FEEDS) {
         marker.setLatLng([lat, lon]);
         marker.setIcon(icon);
         marker.setPopupContent(popupHtml);
-        marker.options.bus = bus; // keep latest bus + feed tag
+        marker.options.bus = bus;
       } else {
         const marker = L.marker([lat, lon], { icon, bus }).addTo(map);
         marker.bindPopup(popupHtml);
