@@ -162,7 +162,7 @@ const bothReqFleetNumbers = new Set([
 "63114",
 "63115",
 "63116",
-"63117",
+"",
 "63121",
 "84058",
 // EAST SCOTLAND JAN 26
