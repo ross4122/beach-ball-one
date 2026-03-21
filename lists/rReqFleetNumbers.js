@@ -1,7 +1,7 @@
 const rReqFleetNumbers = new Set([
     // BLUEBIRD JAN 26
-    "11165",
-	"11788",
+    "11165"
+    "",
     "",
     "36203",
     "36204",
