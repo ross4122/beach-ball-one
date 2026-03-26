@@ -25,7 +25,6 @@ const CAPACITY = "rg";
 const ENVIRONMENT = getEnvironment();
 const UKBUS_API_PREFIX = getUkBusUrl(ENVIRONMENT);
 const SCG_API_PREFIX = getScgUrl(ENVIRONMENT);
-const API_KEY = getApiKey(ENVIRONMENT);
 
 const MAX_AGE_MS = 15 * 60 * 1000; // 15 minutes
 
@@ -107,11 +106,6 @@ function getScgUrl(env) {
   if (env === QA) return "https://api.stagecoach-technology-qa.net";
   // stage/dev/prod all point to stage host in your original code
   return "https://api.stagecoach-technology-stage.net";
-}
-
-function getApiKey(env) {
-  if (env === PROD) return "ukbusprodapi_7k8K536tNsPH#!";
-  return "ukbusstageapi_RTflp12CeJ";
 }
 
 // -------------------- REQUIREMENTS LOGIC --------------------
@@ -354,8 +348,19 @@ function buildVehicleQueryString(apiPrefix, bounds) {
 }
 
 async function fetchFeedVehicles(feed, bounds) {
-  const url = buildVehicleQueryString(feed.prefix, bounds);
-  const proxiedUrl = `https://global.ross4122-ff0.workers.dev/?url=${encodeURIComponent(url)}`;
+  const ne = bounds.getNorthEast();
+  const sw = bounds.getSouthWest();
+
+  const params = new URLSearchParams({
+    latsw: sw.lat,
+    lngsw: sw.lng,
+    latne: ne.lat,
+    lngne: ne.lng,
+    clip: "true"
+  });
+
+  const proxiedUrl =
+    `https://global.ross4122-ff0.workers.dev/vehicles/${feed.name}?${params.toString()}`;
 
   const res = await fetch(proxiedUrl);
   if (!res.ok) throw new Error(`[${feed.name}] Fetch failed: ${res.status} ${res.statusText}`);
@@ -363,7 +368,6 @@ async function fetchFeedVehicles(feed, bounds) {
   const data = await res.json();
   const services = Array.isArray(data?.services) ? data.services : [];
 
-  // tag each bus with the feed name so popup + marker can display it
   for (const bus of services) bus.__feed = feed.name;
 
   return services;
