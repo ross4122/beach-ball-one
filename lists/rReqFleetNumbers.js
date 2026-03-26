@@ -1,22 +1,19 @@
 const rReqFleetNumbers = new Set([
-    // BLUEBIRD JAN 26
+    // BLUEBIRD MAR 26
     "11165",
-	"11788",
-    "27102",
-    "36201",
     "36203",
     "36204",
     "50413",
     "53702",
     "53703",
-    "54131",
     "54132",
     "54134",
     "54135",
     "54136",
     "54137",
     "54309",
-    // EAST SCOTLAND JAN 26
+	"57005",
+    // EAST SCOTLAND MAR 26
     "11534",
 	"11536",
     "11540",
@@ -24,7 +21,6 @@ const rReqFleetNumbers = new Set([
     "36373",
 	"46020",
     "48152",
-    "50513",
     "50514",
     "54277",
     "54278",
@@ -34,7 +30,7 @@ const rReqFleetNumbers = new Set([
 	"80213",
     "80220",
 	"80226",
-    // WEST SCOTLAND JAN 26
+    // WEST SCOTLAND MAR 26
     "10512",
     "28660",
     "28663",
