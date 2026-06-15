@@ -171,7 +171,7 @@ const bothReqFleetNumbers = new Set([
 "",
 "",
 "",
-"80197",
+"",
 "",
 "80199",
 "",
