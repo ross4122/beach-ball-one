@@ -3,6 +3,6 @@ const kReqFleetNumbers = new Set([
     // SOUTH SCOTLAND JUN 26
     "50504",
 	"",
-	"54275",
+	"",
 	"76140"
 ]);
