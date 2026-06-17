@@ -12,7 +12,6 @@ const rReqFleetNumbers = new Set([
     "54309",
 	"57005",
     // SOUTH SCOTLAND JUN 26
-    "",
 	"11534",
 	"11536",
 	"11540",
@@ -24,7 +23,6 @@ const rReqFleetNumbers = new Set([
 	"47838",
 	"48152",
 	"50410",
-	"",
 	"54277",
 	"54278",
 	"54289",
